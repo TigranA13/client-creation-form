@@ -1,0 +1,126 @@
+.created-client-wrapper {
+  margin: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+
+  .header {
+    padding: 16px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+    .full-name {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 23px;
+      color: rgba(0, 0, 0, 0.87);
+    }
+
+    .btns {
+      button:first-of-type {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .info {
+    padding: 16px 0;
+
+    .section {
+      padding: 16px 32px;
+      display: grid;
+      grid-row-gap: 8px;
+
+      h4 {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        color: #2B56F0;
+      }
+
+      .inner-content {
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
+        grid-row-gap: 24px;
+        grid-column-gap: 16px;
+
+        .inner-section {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 16px;
+          letter-spacing: 0.01em;
+          color: rgba(0, 0, 0, 0.87);
+
+          .title {
+            margin-bottom: 12px;
+            color: rgba(0, 0, 0, 0.6);
+          }
+          .document_name {
+            word-break: break-word;
+          }
+        }
+      }
+    }
+  }
+}
+
+.no-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  padding: 2rem;
+  margin: 50px auto;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+  color: rgba(0, 0, 0, 0.6);
+  button {
+    width: 50%;
+    align-self: center;
+    margin-top: 24px;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .created-client-wrapper {
+    margin: 16px;
+    .header {
+      padding: 8px 24px;
+      .btns {
+        text-align: end;
+
+        button:first-of-type {
+          margin-bottom: 8px;
+          margin-right: 0;
+        }
+      }
+    }
+    .info {
+      .section {
+        padding: 8px 24px;
+        .inner-content {
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          gap: 16px;
+
+          .inner-section {
+            span {
+              margin-bottom: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

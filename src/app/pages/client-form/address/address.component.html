@@ -1,0 +1,79 @@
+<form [formGroup]="addressForm">
+  <div class="grid">
+    <div class="section">
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>Country</mat-label>
+        <input type="text"
+               tabindex="-1"
+               placeholder="Select Country"
+               aria-label="Country"
+               matInput
+               formControlName="country"
+               [matAutocomplete]="autoCountry">
+        <button
+          *ngIf="addressForm?.get('country')?.value"
+          matSuffix mat-icon-button aria-label="Clear"
+          (click)="clearCountry()">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-autocomplete autoActiveFirstOption #autoCountry="matAutocomplete" (optionSelected)="selectCountry($event)">
+          <mat-option *ngFor="let option of filteredOptionsCountries | async" [value]="option.value">
+            {{option.value}}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="addressForm.get('country')?.hasError('required')">
+          Country is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="section">
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>City</mat-label>
+        <input type="text"
+               tabindex="-1"
+               placeholder="Select City"
+               aria-label="City"
+               matInput
+               formControlName="city"
+               [matAutocomplete]="autoCity">
+        <button
+          *ngIf="addressForm.get('city')?.value"
+          matSuffix mat-icon-button aria-label="Clear"
+          (click)="addressForm.get('city')?.setValue('')">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-autocomplete autoActiveFirstOption #autoCity="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptionsCities | async" [value]="option.value">
+            {{option.value}}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="addressForm.get('city')?.hasError('required')">
+          Country is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>Area</mat-label>
+        <input tabindex="-1" formControlName="area" matInput placeholder="Ex. Somerset">
+      </mat-form-field>
+    </div>
+    <div class="section">
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>Street</mat-label>
+        <input tabindex="-1" formControlName="street" matInput placeholder="Ex. Oxford str.">
+      </mat-form-field>
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>House</mat-label>
+        <input tabindex="-1" formControlName="house" matInput placeholder="Ex. 42">
+      </mat-form-field>
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>Index</mat-label>
+        <input tabindex="-1" formControlName="index" matInput placeholder="Ex. 0000">
+        <mat-error *ngIf="addressForm.get('index')?.hasError('pattern')">
+          Index should be numeric.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+

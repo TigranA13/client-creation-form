@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.grid {
+  display: grid;
+  grid-template-rows: repeat(5, auto);
+  grid-row-gap: 8px;
+  .full-with-filed {
+    width: 100%;
+  }
+  .section {
+    display: flex;
+    flex-direction: row;
+    column-gap: 24px;
+  }
+}
+
+.success {
+  padding: 25px;
+  border-left: 4px solid #58C450;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.6);
+  button {
+    background-color: #58C450;
+    color: white;
+    border: none;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .grid {
+    grid-template-rows: auto;
+    .section {
+      flex-direction: column;
+    }
+  }
+}

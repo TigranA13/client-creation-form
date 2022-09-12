@@ -1,0 +1,76 @@
+<form [formGroup]="identityForm">
+  <div class="grid">
+    <div class="section">
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>Document Type</mat-label>
+        <mat-select formControlName="docType" (selectionChange)="onDocTypeChange()">
+          <mat-option *ngFor="let country of docTypes" [value]="country.value">
+            {{country.value}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="identityForm.get('docType')?.hasError('required')">
+          Document Type is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="section">
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>Series</mat-label>
+        <input formControlName="series" matInput placeholder="Ex. AT">
+      </mat-form-field>
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>Number</mat-label>
+        <input formControlName="number" matInput placeholder="Ex. 042042042">
+        <mat-error
+          *ngIf="identityForm.get('docType')?.hasError('required') &&
+          !identityForm.get('number')?.hasError('pattern')">
+          Number is <strong>required</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="identityForm.get('number')?.hasError('pattern') &&
+          !identityForm.get('number')?.hasError('required')">
+          Number should be numeric.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="section">
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>Issued By</mat-label>
+        <input formControlName="issuedBy" matInput placeholder="Ex. 042">
+      </mat-form-field>
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>Date of Issue</mat-label>
+        <input
+          tabindex="-1"
+          formControlName="dateOfIssue"
+          matInput
+          [matDatepicker]="picker"
+          [max]="maxDate"
+        >
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="identityForm.get('dateOfIssue')?.hasError('required')">
+          Date of Issue is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="section">
+      <input class="file-input" type="file" placeholder="Upload File">
+      <input type="file" class="file-input"
+             (change)="onFileSelected($event)" #fileUpload>
+      <div class="file-upload">
+        <div class="file-info">
+          <mat-icon>attach_file</mat-icon>
+          {{fileName || "Choose file"}}
+        </div>
+        <button mat-stroked-button color="primary" class="upload-btn"
+                (click)="fileUpload.click()">
+          BROWSE
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+

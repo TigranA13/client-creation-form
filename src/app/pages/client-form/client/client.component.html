@@ -1,0 +1,94 @@
+<form [formGroup]="clientForm">
+  <div class="grid">
+    <div class="section">
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input tabindex="-1" formControlName="firstName" type="text" matInput placeholder="Ex. John">
+        <mat-error *ngIf="clientForm.get('firstName')?.hasError('required')">
+          First Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>Middle Name</mat-label>
+        <input tabindex="-1" formControlName="middleName" type="text" matInput placeholder="Ex. William">
+      </mat-form-field>
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input tabindex="-1" formControlName="lastName" type="text" matInput placeholder="Ex. Doe">
+        <mat-error *ngIf="clientForm.get('lastName')?.hasError('required')">
+          Last Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="section">
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>Date of Birth</mat-label>
+        <input
+          tabindex="-1"
+          formControlName="dateOfBirth"
+          matInput
+          [matDatepicker]="picker"
+          [max]="maxDate"
+        >
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="clientForm.get('dateOfBirth')?.hasError('required')">
+          Date of Birth is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-with-filed" appearance="outline">
+        <mat-label>Gender</mat-label>
+        <mat-select tabindex="-1" formControlName="gender">
+          <mat-option *ngFor="let gender of genders" [value]="gender.value">
+            {{gender.value}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="clientForm.get('gender')?.hasError('required')">
+          Gander is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <mat-form-field class="full-with-filed phone-number" appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <span matPrefix>+ &nbsp;</span>
+      <input tabindex="-1" formControlName="phoneNumber" type="tel" matInput placeholder="Ex. 01234567891">
+      <mat-error
+        *ngIf="clientForm.get('phoneNumber')?.hasError('pattern') &&
+        !clientForm.get('phoneNumber')?.hasError('required')">
+        Please enter a valid phone number
+      </mat-error>
+      <mat-error
+        *ngIf="(clientForm.get('phoneNumber')?.hasError('minlength') ||
+        clientForm.get('phoneNumber')?.hasError('maxlength')) &&
+        !clientForm.get('phoneNumber')?.hasError('pattern')">
+        Phone number must have 11 digits
+      </mat-error>
+      <mat-error *ngIf="clientForm.get('phoneNumber')?.hasError('required')">
+        Phone number is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Client Group</mat-label>
+      <mat-select tabindex="-1" formControlName="clientGroup" multiple>
+        <mat-option *ngFor="let group of clientGroup" [value]="group.value">
+          {{group.value}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="clientForm.get('clientGroup')?.hasError('required')">
+        Client Group is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Coordinator</mat-label>
+      <mat-select tabindex="-1" formControlName="coordinator">
+        <mat-option *ngFor="let coordinator of coordinators" [value]="coordinator.value">
+          {{coordinator.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-checkbox formControlName="sendSMS" color="primary">Do not send SMS</mat-checkbox>
+  </div>
+</form>
+
+

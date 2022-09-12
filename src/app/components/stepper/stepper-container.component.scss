@@ -1,0 +1,117 @@
+.container {
+  header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+    .step-info {
+      display: flex;
+      align-items: center;
+      height: 80px;
+      padding: 0 1rem;
+      cursor: default;
+      color: rgba(0, 0, 0, 0.6);
+      .mat-icon {
+        margin-right: 12px;
+        color: rgba(0, 0, 0, 0.6);
+      }
+      &.active {
+        color: #3f50b5;
+        font-weight: bold;
+        .mat-icon {
+          color: #3f50b5;
+        }
+      }
+      &.valid {
+        color: rgb(0, 0, 0);
+        .mat-icon {
+          color: #3f50b5;
+        }
+      }
+    }
+    .divider:not(:last-child) {
+      height: 1px;
+      width: 6rem;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.content {
+  height: calc(100vh - 266px);
+  margin: 20px auto;
+  width: 45rem;
+  .title {
+    h2 {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 21px;
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  height: 50px;
+  box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12);
+  &.next {
+    justify-content: flex-end;
+  }
+  &.prev {
+    justify-content: flex-start;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  header {
+    padding: 0;
+    .label {
+      display: none;
+    }
+  }
+  .content {
+    padding: 0 6px;
+    height: 100%;
+    width: 90%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  header {
+    padding: 0 2rem;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  //header {
+  //  padding: 0 6rem;
+  //};
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  header {
+    padding: 0 12rem;
+  };
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  header {
+    padding: 0 16rem;
+  };
+}
+
+@media only screen and (min-width: 1400px) {
+  header {
+    padding: 0 24rem;
+  };
+}

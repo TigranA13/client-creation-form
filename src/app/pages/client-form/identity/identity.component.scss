@@ -1,0 +1,38 @@
+.file-input {
+  display: none;
+}
+.file-upload {
+  width: 100%;
+  display: flex;
+  .file-info {
+    width: 80%;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
+    .mat-icon {
+      margin-right: 6px;
+    }
+  }
+  .upload-btn {
+    width: 20%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0 4px 4px 0;
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .file-upload {
+    .upload-btn {
+      font-size: 12px;
+      padding: 12px 6px;
+    }
+  }
+}

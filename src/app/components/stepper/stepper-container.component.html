@@ -1,0 +1,42 @@
+<section class="container">
+  <header>
+    <ng-container *ngFor="let step of stepData; let i = index">
+      <div
+        class="step-info {{
+          selectedIndex === i ? 'active' : (validity[selectedIndex] && selectedIndex === i) || validity[i] ? 'valid' : ''
+        }}">
+        <mat-icon>
+          {{selectedIndex === i ? step.icon : validity[i] ? 'check_circle' : step.icon}}
+        </mat-icon>
+        <span class="label">{{step.label}}</span>
+      </div>
+      <span class="divider"></span>
+    </ng-container>
+  </header>
+
+  <div [style.display]="selected ? 'block' : 'none'">
+    <div class="content">
+      <ng-container *ngIf="selected" [ngTemplateOutlet]="selected.content"></ng-container>
+    </div>
+  </div>
+
+  <footer class="step-navigation-bar">
+    <div class="actions {{selectedIndex > 0 && selectedIndex <= steps.length - 1 ? 'all' : selectedIndex > 0 ? 'prev' : 'next'}}">
+      <button
+        *ngIf="selectedIndex > 0"
+        (click)="onStepChange(selectedIndex - 1)"
+        mat-stroked-button
+        type="button"
+        color="primary">PREVIOUS
+      </button>
+      <button
+        *ngIf="selectedIndex <= steps.length - 1"
+        (click)="onStepChange(selectedIndex + 1)"
+        [disabled]="!validity[this.selectedIndex]"
+        mat-raised-button
+        type="button"
+        color="primary">{{selectedIndex === steps.length - 1 ? 'DONE' : 'NEXT'}}
+      </button>
+    </div>
+  </footer>
+</section>

@@ -1,0 +1,10 @@
+<app-stepper
+  (stepChange)="stepChange($event)"
+  [stepData]="steps"
+  [isValid]="activeForm?.valid"
+  [selectedIndex]="selectedStepIndex">
+  <cdk-step *ngFor="let step of steps; let i = index">
+    <h2 class="title">{{step.label}}</h2>
+    <router-outlet *ngIf="i === selectedStepIndex"></router-outlet>
+  </cdk-step>
+</app-stepper>

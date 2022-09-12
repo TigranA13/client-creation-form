@@ -1,0 +1,149 @@
+<div class="created-client-wrapper" *ngIf="data; else noData">
+  <div class="header">
+    <span class="full-name">
+      {{data.client.firstName}} {{data.client.middleName}} {{data.client.lastName}}
+    </span>
+    <div class="btns">
+      <button color="primary" mat-stroked-button [routerLink]="'/client-form/client/'">EDIT CLIENT</button>
+      <button color="warn" mat-stroked-button (click)="deleteClient()">DELETE CLIENT</button>
+    </div>
+  </div>
+  <div class="info">
+    <!-- CLIENT   -->
+    <div class="section">
+      <h4>Client Information</h4>
+      <div class="inner-content">
+        <div class="inner-section">
+          <span class="title">
+            Gender
+          </span>
+          {{data.client.gender || '-' }}
+        </div>
+        <div class="inner-section">
+          <span class="title">
+            Date of Birth
+          </span>
+          {{(data.client.dateOfBirth | date) || '-' }}
+        </div>
+        <div class="inner-section">
+          <span class="title">
+            Phone Number
+          </span>
+          + {{data.client.phoneNumber || '-' }}
+        </div>
+        <div class="inner-section">
+          <span class="title">
+            Client Group
+          </span>
+          {{data.client.clientGroup || '-' }}
+        </div>
+        <div class="inner-section">
+          <span class="title">
+            Coordinator
+          </span>
+          {{data.client.coordinator || '-' }}
+        </div>
+        <div class="inner-section">
+          <span class="title">
+            Send SMS
+          </span>
+          <mat-checkbox disabled [checked]="!!data.client.sendSMS"></mat-checkbox>
+        </div>
+      </div>
+    </div>
+    <!--  ADDRESS  -->
+    <div class="section">
+      <h4>Address</h4>
+      <div class="inner-content">
+        <div class="inner-section">
+        <span class="title">
+          Country
+        </span>
+          {{data.address.country || '-' }}
+        </div>
+        <div class="inner-section">
+        <span class="title">
+          City
+        </span>
+          {{data.address.city || '-' }}
+        </div>
+        <div class="inner-section">
+        <span class="title">
+          Area
+        </span>
+          {{data.address.area || '-' }}
+        </div>
+        <div class="inner-section">
+        <span class="title">
+          Street
+        </span>
+          {{data.address.street || '-' }}
+        </div>
+        <div class="inner-section">
+        <span class="title">
+          House
+        </span>
+          {{data.address.house || '-' }}
+        </div>
+        <div class="inner-section">
+        <span class="title">
+          Index
+        </span>
+          {{data.address.index || '-' }}
+        </div>
+      </div>
+    </div>
+
+    <!--  IDENTITY  -->
+    <div class="section">
+      <h4>Identity Verification</h4>
+      <div class="inner-content">
+        <div class="inner-section">
+        <span class="title">
+          Document type
+        </span>
+          {{data.identity.docType || '-' }}
+        </div>
+        <div class="inner-section">
+        <span class="title">
+          Series
+        </span>
+          {{data.identity.series || '-' }}
+        </div>
+        <div class="inner-section">
+        <span class="title">
+          Number
+        </span>
+          {{data.identity.number || '-' }}
+        </div>
+        <div class="inner-section">
+        <span class="title">
+          Issued by
+        </span>
+          {{data.identity.issuedBy || '-' }}
+        </div>
+        <div class="inner-section">
+        <span class="title">
+          Date of Issue
+        </span>
+          {{(data.identity.dateOfIssue | date) || '-' }}
+        </div>
+        <div class="inner-section">
+        <span class="title">
+          Document
+        </span>
+          <span class="document_name">
+            <a target="_blank" href="{{data.identity.fileLink}}">{{data.identity.fileUploader}}</a>
+            {{!data.identity.fileUploader ? '-' : '' }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noData>
+  <div class="no-data">
+    Client Not Created
+    <button mat-stroked-button color="primary" routerLink="/client-form/client">Create Client</button>
+  </div>
+</ng-template>
