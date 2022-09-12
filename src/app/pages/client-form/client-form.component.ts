@@ -72,7 +72,7 @@ export class ClientFormComponent implements OnInit, OnDestroy {
       filter(event => event && event instanceof NavigationEnd)
     ).subscribe( (e: any) => {
       const len = e.url.split('/').length;
-      this.activeRoute = e.url.split('/')[len - 1];
+      len >= 3 && (this.activeRoute = e.url.split('/')[len - 1]);
       const index = this.steps.findIndex(res => res.state === this.activeRoute);
       this.selectedStepIndex = index !== -1 ? index : 0;
       this.setActiveFormState();
@@ -92,6 +92,7 @@ export class ClientFormComponent implements OnInit, OnDestroy {
   setActiveFormState(): void {
     this.unsubscribeActiveForm$.next(true);
     this.unsubscribeActiveForm$.complete();
+
     if (this.formState && this.formState[this.activeRoute]) {
       this.activeForm = this.formState[this.activeRoute];
       this.cd.detectChanges();

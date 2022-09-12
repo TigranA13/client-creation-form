@@ -18,7 +18,7 @@ export class StepperContainerComponent extends CdkStepper implements OnInit, OnC
       this.stepData = changes['stepData'].currentValue;
     }
     if (changes && changes['isValid']) {
-      this.validity[this.selectedIndex] = this.isValid;
+      this.validity[this.selectedIndex] = changes['isValid'].currentValue;
     }
   }
 
